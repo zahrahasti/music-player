@@ -49,6 +49,9 @@ async function fetchData(url:string){
     const data=await response.json();
     renderTopCard(data);
     renderMusicPage(data)
+
+    const cards=document.querySelectorAll("[data-music]");
+    console.log(cards);
    
 }
  
@@ -87,7 +90,7 @@ function loadImage(url:string,image:HTMLImageElement){
    })
 }
 
-function renderMusicPage(data:dataMusic[]| null){
+function renderMusicPage(data:dataMusic[]| null):void{
     if(data!==null){
        cardDetail(containerMusicPlayer,musicCardTemplate,data);
     }
@@ -95,16 +98,29 @@ function renderMusicPage(data:dataMusic[]| null){
 
 
 
-function cardDetail(container:HTMLElement,template:HTMLTemplateElement,data:dataMusic[]){
-    data.map(d=>{
+function cardDetail(container:HTMLElement,template:HTMLTemplateElement,data:dataMusic[]):void{
+    data.map((d,i)=>{
         const card = template!.content.cloneNode(true)?.children[0] as HTMLDivElement; 
+        // const urlMusic=card.querySelector("[data-music]");
         const title=card.querySelector("[data-title]") as HTMLParagraphElement;
         const artist=card.querySelector("[data-artist]") as HTMLParagraphElement;
         const image=card.querySelector("[data-image]") as HTMLImageElement;
         
+        card?.setAttribute("data-index",`${i}`);
+        card?.setAttribute("data-url",d.url);
         title.textContent=d.title;
         artist.textContent=d.artist;
         loadImage(d.artwork,image);
         container.appendChild(card);
+    })
+}
+
+
+function playMusic(musicEl:HTMLDivElement[]):void{
+    musicEl.forEach(el=>{
+        el.addEventListener("click",e=>{
+            e.preventDefault();
+            
+        })
     })
 }
