@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="./dist/main.js"></script>
+</head>
+<body>
+    <header class="header flex mb-8 item-center">
+         <img src="./logo.png" alt="" class="header-img">
+          <div class="header-search round-8">
+              <label for="search">
+                 <svg>
+                     <use href="./icon/icon.svg#search"></use>
+                 </svg>
+              </label>
+                 <input 
+                      type="search" 
+                      name="search" 
+                       id="search" 
+                       class="search"
+                       placeholder="Search"
+                       required 
+                       >
+             
+          </div>
+    </header>
+    <main >
+        <section class="flex mb-8">
+            <section class="container-list">
+                <ul class="p-3 round-8 mb-4">
+                    <li>
+                        <button data-target="1">
+                          <svg>
+                             <use href="./icon/icon.svg#home"></use>
+                          </svg>
+                        </button>
+                    </li>
+                    <li>
+                        <button data-target="2">
+                            <svg>
+                               <use href="./icon/icon.svg#music-libarary"></use>
+                            </svg>
+                          </button>
+                    </li>
+                    <li>
+                        <button data-target="3">
+                            <svg>
+                               <use href="./icon/icon.svg#radio"></use>
+                            </svg>
+                          </button>
+                    </li>
+                    <li>
+                        <button data-target="4">
+                            <svg class="rotate-90">
+                               <use href="./icon/icon.svg#video"></use>
+                            </svg>
+                        </button>
+                    </li>
+                 </ul>
+                 <ul class="p-3 gap-4 round-8">
+                    <li>
+                        <button data-target="5">
+                          <svg >
+                             <use href="./icon/icon.svg#user"></use>
+                          </svg>
+                        </button>
+                    </li>
+                    <li>
+                        <button data-target="6">
+                            <svg>
+                               <use href="./icon/icon.svg#Logout"></use>
+                            </svg>
+                          </button>
+                    </li>
+                 </ul>
+            </section>
+            <section class="container-top flex">
+                <section class="relative container-top__img">
+                    <img src="default-bg.png" class="bg-img"
+                     srcset="bg-mobile.png 800w,
+                            bg-desktop.png 1500w"
+                    alt="A responsive image">
+                     <div class="flex-col">
+                         <p>Currated playlist</p>
+                         <div class="flex-col-content">
+                              <div class="flex-content-1">
+                                <h1 class="mb-4">R & B Hits</h1>
+                                <p>All mine, Lie again, Petty call me everyday,
+                                   Out of time, No love, Bad habit,
+                                   and so much more</p>
+                              </div>
+                              <div class="container-small-img">
+                                  <div>
+                                     <img src="" alt="">
+                                     <img src="" alt="">
+                                     <img src="" alt="">
+                                     <img src="" alt="">
+                                     <img src="" alt="">
+                                  </div>
+                                  <svg>
+                                     <use href="./icon/icon.svg#like"></use>
+                                  </svg>
+                              </div>
+                         </div>
+                     </div>
+                      <img  src="./popstar.png" alt="popstart" class="singer">
+                </section>
+                <aside class="mt-4">
+                   <p class="text-lg">Top charts</p>
+                   <section  class="container-top-chart">
+                   
+                   </section>
+                </aside>
+               
+            </section>
+        </section>
+    <section class="container-card-music">
+                    <p class="text-lg mb-4">New releases.</p>
+                    <div  class="container-music">
+                  
+                        
+                    </div>
+                   
+                </section>
+    </main>
+    <template data-card-top-template>
+        <div class="flex card-top-chart p-3 bg-base-dark round-4">
+            <div class="card-top-content">
+                <img src="" alt="song image" class="w-12" data-image loading="lazy"> 
+                 <div>
+                     <p class="text-md" data-title></p>
+                      <p class="text-sm" data-artist></p>
+                      <p class="text-sm-light mt-4">
+                         <span>12</span>:<span>12</span>:<span>00</span>
+                      </p>
+                 </div>
+            </div>
+            <button type="button" class="btn-round" data-like>
+                 <svg>
+                    <use href="./icon/icon.svg#like"></use>
+                 </svg>
+            </button>
+       </div>
+    </template>
+    <template  data-card-music>
+        <div class="music-card" data-music>
+            <img src="" alt="" class="img" data-image>
+            <p class="text-md" data-title>Mountain</p>
+            <p class="text-sm" data-artist>Krisx</p>
+        </div>
+    </template>
+</body>
+</html>

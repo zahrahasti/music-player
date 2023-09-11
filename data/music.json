@@ -1,0 +1,57 @@
+ [
+    {
+      "title": "Death Bed",
+      "artist": "Powfu",
+      "artwork": "https://samplesongs.netlify.app/album-arts/death-bed.jpg",
+      "url": "./data/music/music-1.mp3",
+       "duration":42,
+       "id": "1",
+       "likes":122
+    },
+    {
+      "title": "Bad Liar",
+      "artist": "Imagine Dragons",
+      "artwork": "https://samplesongs.netlify.app/album-arts/bad-liar.jpg",
+      "url": "./data/music/music-2.mp3",
+      "duration":42,
+      "id": "2",
+      "likes":144
+    },
+    {
+      "title": "Faded",
+      "artist": "Alan Walker",
+      "artwork": "https://samplesongs.netlify.app/album-arts/faded.jpg",
+      "url": "./data/music/music-3.mp3",
+      "duration":26,
+      "likes":120
+    },
+    {
+      "title": "Hate Me",
+      "artist": "Ellie Goulding",
+      "artwork": "https://samplesongs.netlify.app/album-arts/hate-me.jpg",
+      "url": "./data/music/music-4.mp3",
+      "duration":21,
+      "id": "4",
+      "likes": 22
+    },
+    {
+      "title": "Solo",
+      "artist": "Clean Bandit",
+      "artwork": "https://samplesongs.netlify.app/album-arts/solo.jpg",
+      "url": "./data/music/music-5.mp3",
+      "duration":30,
+      "id": "5",
+      "likes":33
+    },
+    {
+      "title": "Without Me",
+      "artist": "Halsey",
+      "artwork": "https://samplesongs.netlify.app/album-arts/without-me.jpg",
+      "url": "./data/music/music-5.mp3",
+      "duration":30,
+      "id": "6",
+      "likes":90
+    }
+  ]
+
+
