@@ -117,17 +117,71 @@
                
             </section>
         </section>
-    <section class="container-card-music">
+         <section class="container-card-music mb-base">
                     <p class="text-lg mb-4">New releases.</p>
-                    <div  class="container-music">
-                  
-                        
-                    </div>
-                   
-                </section>
+                    <div  class="container-music"></div>
+            
+        </section>
     </main>
+  
+     <article class="container-play-music">
+        <div>
+             <img src="./bg-desktop.png" alt="" class="w-12">
+             <div>
+                <p class="text-md" data-title>Seasons in</p>
+                <p class="text-sm" data-artist>James</p>
+             </div>
+        </div>
+        <div class="flex-col mb-8">
+            <div class="flex container-control-play">
+                <button type="button">
+                    <svg>
+                        <use href="./icon/icon.svg#TablerArrowsShuffle"></use>
+                    </svg>
+                </button>
+                <button type="button">
+                    <svg>
+                        <use href="./icon/icon.svg#prev"></use>
+                    </svg>
+                </button>
+                <button type="button">
+                    <svg>
+                        <use href="./icon/icon.svg#play"></use>
+                    </svg>
+                </button>
+                <button type="button">
+                    <svg>
+                        <use href="./icon/icon.svg#next"></use>
+                    </svg>
+                </button>
+                <button type="button">
+                    <svg>
+                        <use href="./icon/icon.svg#PhArrowsClockwise"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="container-range">
+                <input type="range"
+                        value="0"
+                        min="0"
+                        max="100">
+            </div>
+      </div>
+      <div class="container-control-play">
+         <svg>
+            <use href="./icon/icon.svg#volum"></use>
+         </svg>
+         <input type="range" name="" id="">
+      </div>
+      <div class="hidden-audio">
+        <audio src="">
+            <source src="" type="audio/ogg">
+            <source src="" type="audio/mpeg">
+          </audio>
+      </div>
+     </article>
     <template data-card-top-template>
-        <div class="flex card-top-chart p-3 bg-base-dark round-4">
+        <div class="flex card-top-chart p-3 bg-base-dark round-4" data-music>
             <div class="card-top-content">
                 <img src="" alt="song image" class="w-12" data-image loading="lazy"> 
                  <div>
