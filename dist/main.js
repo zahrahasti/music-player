@@ -35,6 +35,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 var cardTopTemplate = document.querySelector("[data-card-top-template]");
 var musicCardTemplate = document.querySelector("[data-card-music]");
 var containerTopChart = document.querySelector(".container-top-chart");
@@ -49,7 +58,7 @@ var ListSearch = searchInput.addEventListener("input", function (e) {
 });
 function fetchData(url) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data;
+        var response, data, cards;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, fetch(url)];
@@ -60,6 +69,8 @@ function fetchData(url) {
                     data = _a.sent();
                     renderTopCard(data);
                     renderMusicPage(data);
+                    cards = __spreadArray([], document.querySelectorAll("[data-music]"), true);
+                    playMusic(cards);
                     return [2 /*return*/];
             }
         });
@@ -99,15 +110,37 @@ function renderMusicPage(data) {
     }
 }
 function cardDetail(container, template, data) {
-    data.map(function (d) {
+    data.map(function (d, i) {
         var _a;
         var card = (_a = template.content.cloneNode(true)) === null || _a === void 0 ? void 0 : _a.children[0];
+        // const urlMusic=card.querySelector("[data-music]");
         var title = card.querySelector("[data-title]");
         var artist = card.querySelector("[data-artist]");
         var image = card.querySelector("[data-image]");
+        card === null || card === void 0 ? void 0 : card.setAttribute("data-index", "".concat(i));
+        card === null || card === void 0 ? void 0 : card.setAttribute("data-url", d.url);
         title.textContent = d.title;
         artist.textContent = d.artist;
         loadImage(d.artwork, image);
         container.appendChild(card);
+    });
+}
+function playMusic(musicEl) {
+    musicEl.forEach(function (el) {
+        el.addEventListener("click", function (e) {
+            var _a, _b;
+            e.preventDefault();
+            var audio = document.querySelector("audio");
+            var titleAduio = document.querySelector(".container-play-music [data-title]");
+            var artistAduio = document.querySelector(".container-play-music [data-artist]");
+            var title = (_a = el.querySelector("[data-title]")) === null || _a === void 0 ? void 0 : _a.textContent;
+            var artist = (_b = el.querySelector("[data-artist]")) === null || _b === void 0 ? void 0 : _b.textContent;
+            titleAduio.textContent = "".concat(title);
+            titleAduio.textContent = "".concat(artist);
+            audio.src = "".concat(el.dataset.url);
+            audio.addEventListener("load", function () {
+                audio.play();
+            });
+        });
     });
 }

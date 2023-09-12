@@ -50,8 +50,9 @@ async function fetchData(url:string){
     renderTopCard(data);
     renderMusicPage(data)
 
-    const cards=document.querySelectorAll("[data-music]");
-    console.log(cards);
+    const cards =[...document.querySelectorAll("[data-music]")] as HTMLElement[];
+    playMusic(cards)
+    
    
 }
  
@@ -116,11 +117,26 @@ function cardDetail(container:HTMLElement,template:HTMLTemplateElement,data:data
 }
 
 
-function playMusic(musicEl:HTMLDivElement[]):void{
+function playMusic(musicEl:HTMLElement[]):void{
     musicEl.forEach(el=>{
         el.addEventListener("click",e=>{
             e.preventDefault();
+            const audio=document.querySelector("audio") as HTMLAudioElement;
+            const titleAduio=document.querySelector(".container-play-music [data-title]") as HTMLParagraphElement ; 
+            const artistAduio=document.querySelector(".container-play-music [data-artist]") as  HTMLParagraphElement
+
+            const title=el.querySelector("[data-title]")?.textContent;
+            const artist=el.querySelector("[data-artist]")?.textContent;
+ 
+
+            titleAduio.textContent=`${title}`;
+            titleAduio.textContent=`${artist}`;
             
+            audio.src=`${el.dataset.url}`;
+            audio.addEventListener("load",()=>{
+                audio.play()
+            })
+           
         })
     })
 }
