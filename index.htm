@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
-    <script defer src="./dist/main.js"></script>
+    <script defer src="./dist/main.js" ></script>
 </head>
 <body>
     <header class="header flex mb-8 item-center">
@@ -28,6 +28,7 @@
           </div>
     </header>
     <main >
+        
         <section class="flex mb-8">
             <section class="container-list">
                 <ul class="p-3 round-8 mb-4">
@@ -139,17 +140,17 @@
                         <use href="./icon/icon.svg#TablerArrowsShuffle"></use>
                     </svg>
                 </button>
-                <button type="button">
+                <button type="button" data-btn-prev>
                     <svg>
                         <use href="./icon/icon.svg#prev"></use>
                     </svg>
                 </button>
-                <button type="button">
+                <button type="button" data-btn-play>
                     <svg>
-                        <use href="./icon/icon.svg#play"></use>
+                        <use  data-play></use>
                     </svg>
                 </button>
-                <button type="button">
+                <button type="button" data-btn-next>
                     <svg>
                         <use href="./icon/icon.svg#next"></use>
                     </svg>
@@ -164,7 +165,8 @@
                 <input type="range"
                         value="0"
                         min="0"
-                        max="100">
+                        max="100"
+                        class="range">
             </div>
       </div>
       <div class="container-control-play">

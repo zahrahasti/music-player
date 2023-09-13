@@ -44,13 +44,20 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
+// import {cardDetail} from "./setCard.js";
+// import {loadImage} from "./loadImage.js"
 var cardTopTemplate = document.querySelector("[data-card-top-template]");
 var musicCardTemplate = document.querySelector("[data-card-music]");
 var containerTopChart = document.querySelector(".container-top-chart");
 var containerMusicPlayer = document.querySelector(".container-music");
+var dataPlay = document.querySelector("[data-play]");
+var btnPlay = document.querySelector("[data-btn-play]");
+var audio = document.querySelector("audio");
+var range = document.querySelector(".range");
 var musics = [];
 var searchInput = document.querySelector(".search");
-var ListSearch = searchInput.addEventListener("input", function (e) {
+// const ListSearch=
+searchInput.addEventListener("input", function (e) {
     e.preventDefault();
     //  if (musics.every((music) => typeof music.title === "string" && typeof music.artist === "string")) {
     renderSearchData(musics, searchInput.value.toLocaleLowerCase());
@@ -95,20 +102,51 @@ function renderTopCard(data) {
 }
 // function render
 fetchData("./data/music.json");
-function loadImage(url, image) {
-    image.addEventListener("load", function () {
-        image.src = url;
-    });
-    image.addEventListener("error", function () {
-        image.src = "./bg-mobile.png";
-        return new Error("Error to load image");
-    });
-}
 function renderMusicPage(data) {
     if (data !== null) {
         cardDetail(containerMusicPlayer, musicCardTemplate, data);
     }
 }
+function playMusic(musicEl) {
+    musicEl.forEach(function (el) {
+        el.addEventListener("click", function (e) {
+            var _a, _b;
+            e.preventDefault();
+            var titleAduio = document.querySelector(".container-play-music [data-title]");
+            var artistAduio = document.querySelector(".container-play-music [data-artist]");
+            var title = (_a = el.querySelector("[data-title]")) === null || _a === void 0 ? void 0 : _a.textContent;
+            var artist = (_b = el.querySelector("[data-artist]")) === null || _b === void 0 ? void 0 : _b.textContent;
+            titleAduio.textContent = "".concat(title);
+            artistAduio.textContent = "".concat(artist);
+            audio.src = "".concat(el.dataset.url);
+            audio.play();
+            dataPlay.setAttribute("href", "./icon/icon.svg#pause");
+            btnPlay.setAttribute("data-playing", "".concat(true));
+        });
+    });
+}
+btnPlay.addEventListener("click", function () {
+    if (btnPlay.dataset.playing === "true") {
+        audio.pause();
+        btnPlay.setAttribute("data-playing", "".concat(false));
+        dataPlay.setAttribute("href", "./icon/icon.svg#play");
+    }
+    else {
+        audio.play();
+        btnPlay.dataset.playing = "".concat(false);
+        btnPlay.setAttribute("data-playing", "".concat(true));
+        dataPlay.setAttribute("href", "./icon/icon.svg#pause");
+    }
+    console.log(dataPlay.dataset.playing);
+});
+audio.addEventListener("ended", function () {
+    audio.pause();
+    btnPlay.setAttribute("data-playing", "".concat(false));
+    dataPlay.setAttribute("href", "./icon/icon.svg#play");
+});
+range.addEventListener("change", function () {
+    console.log(this.value);
+});
 function cardDetail(container, template, data) {
     data.map(function (d, i) {
         var _a;
@@ -125,22 +163,12 @@ function cardDetail(container, template, data) {
         container.appendChild(card);
     });
 }
-function playMusic(musicEl) {
-    musicEl.forEach(function (el) {
-        el.addEventListener("click", function (e) {
-            var _a, _b;
-            e.preventDefault();
-            var audio = document.querySelector("audio");
-            var titleAduio = document.querySelector(".container-play-music [data-title]");
-            var artistAduio = document.querySelector(".container-play-music [data-artist]");
-            var title = (_a = el.querySelector("[data-title]")) === null || _a === void 0 ? void 0 : _a.textContent;
-            var artist = (_b = el.querySelector("[data-artist]")) === null || _b === void 0 ? void 0 : _b.textContent;
-            titleAduio.textContent = "".concat(title);
-            titleAduio.textContent = "".concat(artist);
-            audio.src = "".concat(el.dataset.url);
-            audio.addEventListener("load", function () {
-                audio.play();
-            });
-        });
+function loadImage(url, image) {
+    image.addEventListener("load", function () {
+        image.src = url;
+    });
+    image.addEventListener("error", function () {
+        image.src = "./bg-mobile.png";
+        return new Error("Error to load image");
     });
 }

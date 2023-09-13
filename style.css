@@ -164,6 +164,9 @@ body{
     .rotate-90{
         rotate:90deg;
     }
+    [data-card]{
+        cursor: pointer;
+    }
    
 }
 header{
@@ -319,7 +322,7 @@ aside{
     display: flex;
     justify-content: space-around;
     padding:1rem 3rem;
-
+    background:rgba(0,0,0,.6);
     .container-control-play svg{
     color:#fff;
     width:3rem;
@@ -338,13 +341,21 @@ aside{
   height: 100%;
   filter:blur(10rem);
   z-index:1;
-  background:rgba(255,255,255,.1);
+  background:rgba(255,255,255,.2);
 }
 
 /* audio hidden */
 .hidden-audio{
     display: none;
     opacity:0;
+}
+[data-btn-play]{
+    width:4rem;
+    height: 4rem;
+    padding:.5rem;
+    box-shadow:0 0 10px rgba(255,255,255,.2);
+    background:var(--orange);
+    border-radius:50%;
 }
 @media (max-width:1200px) {
     :root{

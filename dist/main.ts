@@ -1,8 +1,14 @@
 "use strict";
+// import {cardDetail} from "./setCard.js";
+// import {loadImage} from "./loadImage.js"
  const cardTopTemplate=<HTMLTemplateElement>document.querySelector("[data-card-top-template]");
  const musicCardTemplate=<HTMLTemplateElement>document.querySelector("[data-card-music]");
  const containerTopChart=document.querySelector(".container-top-chart") as HTMLElement;
- const containerMusicPlayer=document.querySelector(".container-music") as HTMLElement
+ const containerMusicPlayer=document.querySelector(".container-music") as HTMLElement;
+ const dataPlay=document.querySelector("[data-play]") as HTMLElement;
+ const btnPlay=document.querySelector("[data-btn-play]") as HTMLElement;
+ const audio=document.querySelector("audio") as HTMLAudioElement;
+ const range=document.querySelector(".range") as HTMLInputElement;
 type MusicData=[
     {
      title:string,
@@ -12,7 +18,7 @@ type MusicData=[
      likes:string
     }
 ]
-type dataMusic={
+ type dataMusic={
     title:string,
     artist:string,
     artwork:string,
@@ -35,7 +41,7 @@ interface MusicData2{
 let musics:Music[]=[];
  
 const searchInput=<HTMLInputElement>document.querySelector(".search");
-const ListSearch=
+// const ListSearch=
 searchInput.addEventListener("input",(e:Event)=>{
      e.preventDefault();
     //  if (musics.every((music) => typeof music.title === "string" && typeof music.artist === "string")) {
@@ -80,22 +86,64 @@ function renderTopCard(data:MusicData| null){
 
  fetchData("./data/music.json");
  
- 
-function loadImage(url:string,image:HTMLImageElement){
-   image.addEventListener("load",()=>{
-     image.src=url;
-   })
-   image.addEventListener("error",()=>{
-    image.src="./bg-mobile.png";
-    return new Error("Error to load image")
-   })
-}
+
 
 function renderMusicPage(data:dataMusic[]| null):void{
     if(data!==null){
        cardDetail(containerMusicPlayer,musicCardTemplate,data);
     }
 }
+
+
+
+
+
+function playMusic(musicEl:HTMLElement[]):void{
+    musicEl.forEach(el=>{
+        el.addEventListener("click",e=>{
+            e.preventDefault();
+            const titleAduio=document.querySelector(".container-play-music [data-title]") as HTMLParagraphElement ; 
+            const artistAduio=document.querySelector(".container-play-music [data-artist]") as  HTMLParagraphElement
+
+            const title=el.querySelector("[data-title]")?.textContent;
+            const artist=el.querySelector("[data-artist]")?.textContent;
+ 
+
+            titleAduio.textContent=`${title}`;
+            artistAduio.textContent=`${artist}`;
+
+            audio.src=`${el.dataset.url}`;
+            audio.play()
+            dataPlay.setAttribute("href","./icon/icon.svg#pause")
+            btnPlay.setAttribute("data-playing",`${true}`);
+        })
+    })
+}
+
+btnPlay.addEventListener("click",function(){
+   if(btnPlay.dataset.playing==="true"){
+     audio.pause();
+     btnPlay.setAttribute("data-playing",`${false}`);
+     dataPlay.setAttribute("href","./icon/icon.svg#play")
+   }else{
+    audio.play()
+    btnPlay.dataset.playing=`${false}`
+    btnPlay.setAttribute("data-playing",`${true}`);
+    dataPlay.setAttribute("href","./icon/icon.svg#pause")
+ }
+
+console.log(dataPlay.dataset.playing);
+})
+
+audio.addEventListener("ended",function(){
+    audio.pause();
+    btnPlay.setAttribute("data-playing",`${false}`);
+    dataPlay.setAttribute("href","./icon/icon.svg#play")
+})
+
+range.addEventListener("change",function(){
+    console.log(this.value);
+})
 
 
 
@@ -115,28 +163,15 @@ function cardDetail(container:HTMLElement,template:HTMLTemplateElement,data:data
         container.appendChild(card);
     })
 }
-
-
-function playMusic(musicEl:HTMLElement[]):void{
-    musicEl.forEach(el=>{
-        el.addEventListener("click",e=>{
-            e.preventDefault();
-            const audio=document.querySelector("audio") as HTMLAudioElement;
-            const titleAduio=document.querySelector(".container-play-music [data-title]") as HTMLParagraphElement ; 
-            const artistAduio=document.querySelector(".container-play-music [data-artist]") as  HTMLParagraphElement
-
-            const title=el.querySelector("[data-title]")?.textContent;
-            const artist=el.querySelector("[data-artist]")?.textContent;
- 
-
-            titleAduio.textContent=`${title}`;
-            titleAduio.textContent=`${artist}`;
-            
-            audio.src=`${el.dataset.url}`;
-            audio.addEventListener("load",()=>{
-                audio.play()
-            })
-           
-        })
+function loadImage(url:string,image:HTMLImageElement){
+    image.addEventListener("load",()=>{
+      image.src=url;
     })
-}
+    image.addEventListener("error",()=>{
+     image.src="./bg-mobile.png";
+     return new Error("Error to load image")
+    })
+  
+ }
+
+

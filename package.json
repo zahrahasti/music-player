@@ -1,0 +1,19 @@
+{
+  "name": "music_player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zahrahasti/music-player.git"
+  },
+  "author": "zahra NM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zahrahasti/music-player/issues"
+  },
+  "homepage": "https://github.com/zahrahasti/music-player#readme"
+}
