@@ -26,105 +26,118 @@
                        >
              
           </div>
+          <button class="toggle-menu">
+             <svg>
+                 <use href="./icon/icon.svg#bar"></use>
+             </svg>
+          </button>
     </header>
-    <main >
-        
-        <section class="flex justify-between gap-x-4 b-8">
-            <section class="container-list">
-                <ul class="p-3 round-8 mb-4">
-                    <li>
-                        <button data-target="1">
-                          <svg>
-                             <use href="./icon/icon.svg#home"></use>
-                          </svg>
-                        </button>
-                    </li>
-                    <li>
-                        <button data-target="2">
-                            <svg>
-                               <use href="./icon/icon.svg#music-libarary"></use>
-                            </svg>
-                          </button>
-                    </li>
-                    <li>
-                        <button data-target="3">
-                            <svg>
-                               <use href="./icon/icon.svg#radio"></use>
-                            </svg>
-                          </button>
-                    </li>
-                    <li>
-                        <button data-target="4">
-                            <svg class="rotate-90">
-                               <use href="./icon/icon.svg#video"></use>
-                            </svg>
-                        </button>
-                    </li>
-                 </ul>
-                 <ul class="p-3 gap-4 round-8">
-                    <li>
-                        <button data-target="5">
-                          <svg >
-                             <use href="./icon/icon.svg#user"></use>
-                          </svg>
-                        </button>
-                    </li>
-                    <li>
-                        <button data-target="6">
-                            <svg>
-                               <use href="./icon/icon.svg#Logout"></use>
-                            </svg>
-                          </button>
-                    </li>
-                 </ul>
-            </section>
-            <section class="container-top flex justify-between gap-x-4">
-                <section class="relative container-top__img">
-                    <img src="default-bg.png" class="bg-img"
-                     srcset="bg-mobile.png 800w,
-                            bg-desktop.png 1500w"
-                    alt="A responsive image">
-                     <div class="flex-col">
-                         <p>Currated playlist</p>
-                         <div class="flex-col-content">
-                              <div class="flex-content-1">
-                                <h1 class="mb-4">R & B Hits</h1>
-                                <p>All mine, Lie again, Petty call me everyday,
-                                   Out of time, No love, Bad habit,
-                                   and so much more</p>
-                              </div>
-                              <div class="container-small-img">
-                                  <div>
-                                     <img src="" alt="">
-                                     <img src="" alt="">
-                                     <img src="" alt="">
-                                     <img src="" alt="">
-                                     <img src="" alt="">
-                                  </div>
-                                  <svg>
-                                     <use href="./icon/icon.svg#like"></use>
-                                  </svg>
-                              </div>
-                         </div>
-                     </div>
-                      <img  src="./popstar.png" alt="popstart" class="singer">
+    <main>
+         <section class="container-home" data-target="1">
+            <section class="flex justify-between gap-x-4 b-8">
+                <section class="container-list">
+                    <ul class="p-3 round-8 mb-4">
+                        <li>
+                            <button data-target="1" class="active">
+                              <svg>
+                                 <use href="./icon/icon.svg#home"></use>
+                              </svg>
+                            </button>
+                            <p></p>
+                        </li>
+                        <li>
+                            <button data-target="2">
+                                <svg>
+                                   <use href="./icon/icon.svg#music-libarary"></use>
+                                </svg>
+                              </button>
+                              <p></p>
+                        </li>
+                        <li>
+                            <button data-target="3">
+                                <svg>
+                                   <use href="./icon/icon.svg#radio"></use>
+                                </svg>
+                              </button>
+                              <p></p>
+                        </li>
+                        <li>
+                            <button data-target="4">
+                                <svg class="rotate-90">
+                                   <use href="./icon/icon.svg#video"></use>
+                                </svg>
+                            </button>
+                            <p></p>
+                        </li>
+                     </ul>
+                     <ul class="p-3 gap-4 round-8">
+                        <li>
+                            <button data-target="5">
+                              <svg >
+                                 <use href="./icon/icon.svg#user"></use>
+                              </svg>
+                            </button>
+                            <p></p>
+                        </li>
+                        <li>
+                            <button data-target="6">
+                                <svg>
+                                   <use href="./icon/icon.svg#Logout"></use>
+                                </svg>
+                              </button>
+                              <p></p>
+                        </li>
+                     </ul>
                 </section>
-                  <aside class="mt-4">
-                   <p class="text-lg">Top charts</p>
-                   <section  class="container-top-chart">
-                   
-                   </section>
-                </aside>
+                <section class="container-top flex justify-between gap-x-4">
+                    <section class="relative container-top__img">
+                        <img src="default-bg.png" class="bg-img"
+                         srcset="bg-mobile.png 800w,
+                                bg-desktop.png 1500w"
+                        alt="A responsive image">
+                         <div class="flex-col">
+                             <p class="text-xm">Currated playlist</p>
+                             <div class="flex-col-content">
+                                  <div class="flex-content-1">
+                                    <h1 class="mb-4">R & B Hits</h1>
+                                    <p>All mine, Lie again, Petty call me everyday,
+                                       Out of time, No love, Bad habit,
+                                       and so much more</p>
+                                  </div>
+                                       
+                                           <div class="item-center mt-6 text-white p-3 flex self-end gap-x-2">
+                                            <img src="./Frame 4.png" alt="people images">
+                                            <svg class="text-white w-4">
+                                                 <use href="./icon/icon.svg#like"></use>
+                                            </svg>
+                                           <p>33k Likes</p>
+                                           </div>
+                                      
+                                  </div>
+                             </div>
+                         
+                          <img  src="./popstar.png" alt="popstart" class="singer">
+                    </section>
+                      <aside>
+                       <p class="text-xl mt-4">Top charts</p>
+                       <section  class="container-top-chart">
+                       
+                       </section>
+                    </aside>
+                </section>
             </section>
-        </section>
-         <section class="container-card-music mb-base">
-                    <p class="text-lg mb-4">New releases.</p>
-                    <div  class="container-music"></div>
-            
-        </section>
+             <section class="container-card-music mb-base">
+                        <p class="text-xl mt-6 mb-4">New releases.</p>
+                        <div  class="container-music"></div>
+                
+            </section>
+         </section>
+         <section class="container-music" data-target="2">
+
+         </section>
     </main>
   
-     <article class="container-play-music justify-between flex item-center">
+     <article class="container-play-music  text-white justify-between flex item-center">
            
          <div class="flex item-center gap-x-2">
               <img src="./bg-desktop.png" alt="" class="w-12" data-image> 
@@ -133,8 +146,8 @@
                      <p class="text-sm" data-artist>James</p>
                 </div>
          </div>
-         <div class="">
-            <div class="container-control-play">
+         <div>
+            <div class="container-control-play mb-4">
                 <button type="button">
                     <svg>
                         <use href="./icon/icon.svg#TablerArrowsShuffle"></use>
@@ -184,10 +197,10 @@
         <div class="flex justify-between card-top-chart p-3 bg-base-dark round-4" data-music>
             <div class="card-top-content">
                 <img src="" alt="song image" class="w-12" data-image loading="lazy"> 
-                 <div>
-                     <p class="text-md" data-title></p>
+                 <div class="flex flex-col justify-between">
+                     <p class="text-lg" data-title></p>
                       <p class="text-sm" data-artist></p>
-                      <p class="text-sm-light mt-4">
+                      <p class="text-sm-light">
                          <span>12</span>:<span>12</span>:<span>00</span>
                       </p>
                  </div>
@@ -202,7 +215,7 @@
     <template  data-card-music>
         <div class="music-card" data-music>
             <img src="" alt="" class="img" data-image>
-            <p class="text-md" data-title>Mountain</p>
+            <p class="text-md mb-1" data-title >Mountain</p>
             <p class="text-sm" data-artist>Krisx</p>
         </div>
     </template>
