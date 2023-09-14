@@ -1,4 +1,3 @@
- 
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -56,31 +55,6 @@ var range = document.querySelector(".range");
 var slider = document.querySelector(".slider");
 var buttonsControl = __spreadArray([], document.querySelectorAll("[data-btn]"), true);
 var toggleMenu = document.querySelector(".toggle-menu");
-function cardDetail(container, template, data) {
-    data.map(function (d, i) {
-        var _a;
-        var card = (_a = template.content.cloneNode(true)) === null || _a === void 0 ? void 0 : _a.children[0];
-        // const urlMusic=card.querySelector("[data-music]");
-        var title = card.querySelector("[data-title]");
-        var artist = card.querySelector("[data-artist]");
-        var image = card.querySelector("[data-image]");
-        card === null || card === void 0 ? void 0 : card.setAttribute("data-index", "".concat(i));
-        card === null || card === void 0 ? void 0 : card.setAttribute("data-url", d.url);
-        title.textContent = d.title;
-        artist.textContent = d.artist;
-        loadImage(d.artwork, image);
-        container.appendChild(card);
-    });
-}
-function loadImage(url, image) {
-    image.addEventListener("load", function () {
-        image.src = url;
-    });
-    image.addEventListener("error", function () {
-        image.src = "./bg-mobile.png";
-        return new Error("Error to load image");
-    });
-}
 var musics = [];
 var searchInput = document.querySelector(".search");
 // const ListSearch=
@@ -156,110 +130,135 @@ function playMusic(musicEl) {
             currentMusicIndex = i;
         });
     });
-    btnPlay.addEventListener("click", function () {
-        if (btnPlay.dataset.playing === "true") {
-            audio.pause();
-            btnPlay.setAttribute("data-playing", "".concat(false));
-            dataPlay.setAttribute("href", "./icon/icon.svg#play");
-        }
-        else {
-            audio.play();
-            btnPlay.dataset.playing = "".concat(false);
-            btnPlay.setAttribute("data-playing", "".concat(true));
-            dataPlay.setAttribute("href", "./icon/icon.svg#pause");
-        }
-        console.log(dataPlay.dataset.playing);
-    });
-    //todo   btn controls   
-    buttonsControl.forEach(function (btn) {
-        btn.addEventListener("click", function () {
-            slider.style.width = "0";
-            // audio.currentTime=0;
-            audio.src = "";
-            range.value = "0";
-            if (btn.dataset.btn === "next") {
-                playNext();
-                console.log("next");
-            }
-            else if (btn.dataset.btn === "prev") {
-                playPrev();
-                console.log("prev");
-            }
-        });
-    });
-    audio.addEventListener("ended", function () {
+}
+btnPlay.addEventListener("click", function () {
+    if (btnPlay.dataset.playing === "true") {
         audio.pause();
         btnPlay.setAttribute("data-playing", "".concat(false));
         dataPlay.setAttribute("href", "./icon/icon.svg#play");
-    });
-    audio.addEventListener("timeupdate", function (e) {
-        range.value = "";
-        var currentTime = this.currentTime / this.duration;
-        if (!isNaN(currentTime))
-            range.value = "".concat(currentTime * 100);
-        slider.style.width = "".concat(currentTime * 100, "%");
-    });
-    range.addEventListener("input", function () { return setCurrentTime(); });
-    range.addEventListener("change", function () { return setCurrentTime(); });
-    function setCurrentTime() {
-        if (audio.src !== undefined) {
-            audio.currentTime = audio.duration * (+range.value / 100);
-        }
-        slider.style.width = "".concat(range.value, "%");
     }
-    function playNext() {
-        var _a, _b, _c;
-        var cards = document.querySelectorAll("[data-music]");
-        var lastIndex = cards.length - 1;
-        if (currentMusicIndex === undefined || currentMusicIndex >= lastIndex) {
-            currentMusicIndex = 0;
-        }
-        else {
-            currentMusicIndex++;
-        }
-        var nextCard = cards[currentMusicIndex];
-        var titleAduio = document.querySelector(".container-play-music [data-title]");
-        var artistAduio = document.querySelector(".container-play-music [data-artist]");
-        var imageAduio = document.querySelector(".container-play-music [data-image]");
-        var title = (_a = nextCard.querySelector("[data-title]")) === null || _a === void 0 ? void 0 : _a.textContent;
-        var artist = (_b = nextCard.querySelector("[data-artist]")) === null || _b === void 0 ? void 0 : _b.textContent;
-        var image = nextCard.querySelector("[data-image]");
-        var nextUrl = (_c = nextCard === null || nextCard === void 0 ? void 0 : nextCard.dataset) === null || _c === void 0 ? void 0 : _c.url;
-        if (nextUrl) {
-            titleAduio.textContent = "".concat(title);
-            artistAduio.textContent = "".concat(artist);
-            imageAduio.src = image.src;
-            audio.src = nextUrl;
-            audio.play();
-        }
-        else {
-            console.error("Invalid URL");
-        }
+    else {
+        audio.play();
+        btnPlay.dataset.playing = "".concat(false);
+        btnPlay.setAttribute("data-playing", "".concat(true));
+        dataPlay.setAttribute("href", "./icon/icon.svg#pause");
     }
-    function playPrev() {
-        var _a;
-        var cards = document.querySelectorAll("[data-music]");
-        var lastIndex = cards.length - 1;
-        if (currentMusicIndex === undefined || currentMusicIndex <= 0) {
-            currentMusicIndex = lastIndex;
+    console.log(dataPlay.dataset.playing);
+});
+//todo   btn controls   
+buttonsControl.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+        slider.style.width = "0";
+        // audio.currentTime=0;
+        audio.src = "";
+        range.value = "0";
+        if (btn.dataset.btn === "next") {
+            playNext();
+            console.log("next");
         }
-        else {
-            currentMusicIndex--;
+        else if (btn.dataset.btn === "prev") {
+            playPrev();
+            console.log("prev");
         }
-        var prevCard = cards[currentMusicIndex];
-        var prevUrl = (_a = prevCard === null || prevCard === void 0 ? void 0 : prevCard.dataset) === null || _a === void 0 ? void 0 : _a.url;
-        if (prevUrl) {
-            audio.src = prevUrl;
-            audio.play();
-        }
-        else {
-            console.error("Invalid URL");
-        }
+    });
+});
+audio.addEventListener("ended", function () {
+    audio.pause();
+    btnPlay.setAttribute("data-playing", "".concat(false));
+    dataPlay.setAttribute("href", "./icon/icon.svg#play");
+});
+audio.addEventListener("timeupdate", function (e) {
+    range.value = "";
+    var currentTime = this.currentTime / this.duration;
+    if (!isNaN(currentTime))
+        range.value = "".concat(currentTime * 100);
+    slider.style.width = "".concat(currentTime * 100, "%");
+});
+range.addEventListener("input", function () { return setCurrentTime(); });
+range.addEventListener("change", function () { return setCurrentTime(); });
+function setCurrentTime() {
+    if (audio.src !== undefined) {
+        audio.currentTime = audio.duration * (+range.value / 100);
+    }
+    slider.style.width = "".concat(range.value, "%");
+}
+function playNext() {
+    var _a, _b, _c;
+    var cards = document.querySelectorAll("[data-music]");
+    var lastIndex = cards.length - 1;
+    if (currentMusicIndex === undefined || currentMusicIndex >= lastIndex) {
+        currentMusicIndex = 0;
+    }
+    else {
+        currentMusicIndex++;
+    }
+    var nextCard = cards[currentMusicIndex];
+    var titleAduio = document.querySelector(".container-play-music [data-title]");
+    var artistAduio = document.querySelector(".container-play-music [data-artist]");
+    var imageAduio = document.querySelector(".container-play-music [data-image]");
+    var title = (_a = nextCard.querySelector("[data-title]")) === null || _a === void 0 ? void 0 : _a.textContent;
+    var artist = (_b = nextCard.querySelector("[data-artist]")) === null || _b === void 0 ? void 0 : _b.textContent;
+    var image = nextCard.querySelector("[data-image]");
+    var nextUrl = (_c = nextCard === null || nextCard === void 0 ? void 0 : nextCard.dataset) === null || _c === void 0 ? void 0 : _c.url;
+    if (nextUrl) {
+        titleAduio.textContent = "".concat(title);
+        artistAduio.textContent = "".concat(artist);
+        imageAduio.src = image.src;
+        audio.src = nextUrl;
+        audio.play();
+    }
+    else {
+        console.error("Invalid URL");
     }
 }
+function playPrev() {
+    var _a;
+    var cards = document.querySelectorAll("[data-music]");
+    var lastIndex = cards.length - 1;
+    if (currentMusicIndex === undefined || currentMusicIndex <= 0) {
+        currentMusicIndex = lastIndex;
+    }
+    else {
+        currentMusicIndex--;
+    }
+    var prevCard = cards[currentMusicIndex];
+    var prevUrl = (_a = prevCard === null || prevCard === void 0 ? void 0 : prevCard.dataset) === null || _a === void 0 ? void 0 : _a.url;
+    if (prevUrl) {
+        audio.src = prevUrl;
+        audio.play();
+    }
+    else {
+        console.error("Invalid URL");
+    }
+}
+//toggle menu
 toggleMenu.addEventListener("click", function () {
     var containerMenuList = document.querySelector(".container-list");
     containerMenuList.style.left = "0%";
     containerMenuList.style.display = "flex";
 });
- 
+function cardDetail(container, template, data) {
+    data.map(function (d, i) {
+        var _a;
+        var card = (_a = template.content.cloneNode(true)) === null || _a === void 0 ? void 0 : _a.children[0];
+        // const urlMusic=card.querySelector("[data-music]");
+        var title = card.querySelector("[data-title]");
+        var artist = card.querySelector("[data-artist]");
+        var image = card.querySelector("[data-image]");
+        card === null || card === void 0 ? void 0 : card.setAttribute("data-index", "".concat(i));
+        card === null || card === void 0 ? void 0 : card.setAttribute("data-url", d.url);
+        title.textContent = d.title;
+        artist.textContent = d.artist;
+        loadImage(d.artwork, image);
+        container.appendChild(card);
+    });
+}
+function loadImage(url, image) {
+    image.addEventListener("load", function () {
+        image.src = url;
+    });
+    image.addEventListener("error", function () {
+        image.src = "./bg-mobile.png";
+        return new Error("Error to load image");
+    });
+}
