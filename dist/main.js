@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+ 
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -263,4 +262,4 @@ toggleMenu.addEventListener("click", function () {
     containerMenuList.style.left = "0%";
     containerMenuList.style.display = "flex";
 });
->>>>>>> d967db4 (play music fix prev and next buttons problems)
+ 

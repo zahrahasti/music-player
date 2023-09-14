@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-=======
-
 @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&family=Poppins:ital,wght@0,400;0,800;1,400;1,700;1,800&family=Quicksand:wght@300;400;700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Rubik:wght@300;400;500&display=swap');
 
 @layer reset,base,component,layout,utilities;
@@ -363,7 +360,7 @@ aside{
 }
 
 /* audio hidden */
-.hidden-audio{
+.container-audio-hidden{
     display: none;
     opacity:0;
 }
@@ -453,4 +450,4 @@ aside{
         font-size:80%;
     }
 }
->>>>>>> d967db4 (play music fix prev and next buttons problems)
+ 
