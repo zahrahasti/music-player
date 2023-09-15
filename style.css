@@ -265,13 +265,15 @@ ul{
     padding-block:2rem;
 }
  
+.hidden {
+    display: none;
+}
 ul li:not(:last-child){
   margin-bottom:2.5rem;
 }
 .container-list{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 .container-top{
     display: grid;

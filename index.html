@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
-    <script defer src="./dist/main.js" ></script>
+    <script defer src="./main.js" type="module"></script>
 </head>
 <body>
     <header class="header flex justify-between gap-x-4 mb-8 item-center">
@@ -32,64 +33,65 @@
              </svg>
           </button>
     </header>
-    <main>
-         <section class="container-home hidden" data-target="1">
+    <main class="flex gap-x-4">
+        <section class="container-list">
+            <ul class="p-3 round-8 mb-4">
+                <li>
+                    <button data-target="1" class="active">
+                      <svg>
+                         <use href="./icon/icon.svg#home"></use>
+                      </svg>
+                    </button>
+                    <p></p>
+                </li>
+                <li>
+                    <button data-target="2">
+                        <svg>
+                           <use href="./icon/icon.svg#music-libarary"></use>
+                        </svg>
+                      </button>
+                      <p></p>
+                </li>
+                <li>
+                    <button data-target="3">
+                        <svg>
+                           <use href="./icon/icon.svg#radio"></use>
+                        </svg>
+                      </button>
+                      <p></p>
+                </li>
+                <li>
+                    <button data-target="4">
+                        <svg class="rotate-90">
+                           <use href="./icon/icon.svg#video"></use>
+                        </svg>
+                    </button>
+                    <p></p>
+                </li>
+             </ul>
+             <ul class="p-3 gap-4 round-8">
+                <li>
+                    <button data-target="5">
+                      <svg >
+                         <use href="./icon/icon.svg#user"></use>
+                      </svg>
+                    </button>
+                    <p></p>
+                </li>
+                <li>
+                    <button data-target="6">
+                        <svg>
+                           <use href="./icon/icon.svg#Logout"></use>
+                        </svg>
+                      </button>
+                      <p></p>
+                </li>
+             </ul>
+        </section>
+           <section class="container-home hidden" data-target="1">
             <section class="flex justify-between gap-x-4 b-8">
-                <section class="container-list">
-                    <ul class="p-3 round-8 mb-4">
-                        <li>
-                            <button data-target="1" class="active">
-                              <svg>
-                                 <use href="./icon/icon.svg#home"></use>
-                              </svg>
-                            </button>
-                            <p></p>
-                        </li>
-                        <li>
-                            <button data-target="2">
-                                <svg>
-                                   <use href="./icon/icon.svg#music-libarary"></use>
-                                </svg>
-                              </button>
-                              <p></p>
-                        </li>
-                        <li>
-                            <button data-target="3">
-                                <svg>
-                                   <use href="./icon/icon.svg#radio"></use>
-                                </svg>
-                              </button>
-                              <p></p>
-                        </li>
-                        <li>
-                            <button data-target="4">
-                                <svg class="rotate-90">
-                                   <use href="./icon/icon.svg#video"></use>
-                                </svg>
-                            </button>
-                            <p></p>
-                        </li>
-                     </ul>
-                     <ul class="p-3 gap-4 round-8">
-                        <li>
-                            <button data-target="5">
-                              <svg >
-                                 <use href="./icon/icon.svg#user"></use>
-                              </svg>
-                            </button>
-                            <p></p>
-                        </li>
-                        <li>
-                            <button data-target="6">
-                                <svg>
-                                   <use href="./icon/icon.svg#Logout"></use>
-                                </svg>
-                              </button>
-                              <p></p>
-                        </li>
-                     </ul>
-                </section>
-                <section class="container-top flex justify-between gap-x-4">
+            
+                 <section class="child-1 container-top flex justify-between gap-x-4">
                     <section class="relative container-top__img">
                         <img src="default-bg.png" class="bg-img"
                          srcset="bg-mobile.png 800w,
@@ -126,17 +128,20 @@
                     </aside>
                 </section>
             </section>
-             <section class="container-card-music mb-base">
+             <section class="child-2 container-card-music mb-base">
                         <p class="text-xl mt-6 mb-4">New releases.</p>
                         <div  class="container-music"></div>
                 
             </section>
-         </section>
-         <section class="container-music" data-target="2">
-            <img src="" alt="" class="cover-page">
-            <h1 class="mt-4 mb-8">Playlist Stats</h1>
-        
-         </section>
+           </section>
+                  
+
+           <!-- second page  -->
+            <section class="container-music flex" data-target="2">
+              <img src="" alt="" class="cover-page">
+              <h1 class="text-2xl mt-4 mb-8">Playlist Stats</h1>
+              <div id="container"></div>
+          </section>
     </main>
   
      <article class="container-play-music  text-white justify-between flex item-center">

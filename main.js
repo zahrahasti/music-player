@@ -44,6 +44,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var cardTopTemplate = document.querySelector("[data-card-top-template]");
 var musicCardTemplate = document.querySelector("[data-card-music]");
 var containerTopChart = document.querySelector(".container-top-chart");
@@ -262,3 +263,5 @@ function loadImage(url, image) {
         return new Error("Error to load image");
     });
 }
+var index_1 = require("./index");
+(0, index_1.test)();
