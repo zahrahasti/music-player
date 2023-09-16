@@ -281,5 +281,4 @@ function loadImage(url:string,image:HTMLImageElement){
  }
 
  
- import {test} from "./index"
- test()
+ 

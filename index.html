@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="./chart.js"></script>
     <script defer src="./main.js" type="module"></script>
 </head>
 <body>
@@ -137,10 +139,12 @@
                   
 
            <!-- second page  -->
-            <section class="container-music flex" data-target="2">
+            <section class="container-music" data-target="2">
               <img src="" alt="" class="cover-page">
               <h1 class="text-2xl mt-4 mb-8">Playlist Stats</h1>
-              <div id="container"></div>
+              <div>
+                <canvas id="myChart"></canvas>
+              </div>
           </section>
     </main>
   
