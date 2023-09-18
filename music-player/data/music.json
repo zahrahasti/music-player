@@ -6,7 +6,8 @@
       "url": "./data/music/music-1.mp3",
        "duration":42,
        "id": "1",
-       "likes":122
+       "likes":122,
+       "creation":"2000/2/3"
     },
     {
       "title": "Bad Liar",
@@ -15,7 +16,8 @@
       "url": "./data/music/music-2.mp3",
       "duration":42,
       "id": "2",
-      "likes":144
+      "likes":144,
+      "creation":"2010/5/3"
     },
     {
       "title": "Faded",
@@ -23,7 +25,8 @@
       "artwork": "https://samplesongs.netlify.app/album-arts/faded.jpg",
       "url": "./data/music/music-3.mp3",
       "duration":26,
-      "likes":120
+      "likes":120,
+      "creation":"2020/6/8"
     },
     {
       "title": "Hate Me",
@@ -32,7 +35,8 @@
       "url": "./data/music/music-4.mp3",
       "duration":21,
       "id": "4",
-      "likes": 22
+      "likes": 22,
+      "creation":"2023/2/15"
     },
     {
       "title": "Solo",
@@ -41,7 +45,8 @@
       "url": "./data/music/music-5.mp3",
       "duration":30,
       "id": "5",
-      "likes":33
+      "likes":33,
+      "creation":"2013/5/15"
     },
     {
       "title": "Without Me",
@@ -50,7 +55,8 @@
       "url": "./data/music/music-5.mp3",
       "duration":30,
       "id": "6",
-      "likes":90
+      "likes":90,
+      "creation":"2020/8/8"
     }
   ]
 

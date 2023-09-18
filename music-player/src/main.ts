@@ -1,13 +1,14 @@
 
 
 "use strict";
+import { cardDetail } from "./createCard";
  const cardTopTemplate=<HTMLTemplateElement>document.querySelector("[data-card-top-template]");
  const musicCardTemplate=<HTMLTemplateElement>document.querySelector("[data-card-music]");
  const containerTopChart=document.querySelector(".container-top-chart") as HTMLElement;
  const containerMusicPlayer=document.querySelector(".container-music") as HTMLElement;
  const dataPlay=document.querySelector("[data-play]") as HTMLElement;
  const btnPlay=document.querySelector("[data-btn-play]") as HTMLElement;
- const audio=document.querySelector("audio") as HTMLAudioElement;
+ export const audio=document.querySelector("audio") as HTMLAudioElement;
  const range=document.querySelector(".range") as HTMLInputElement;
  const slider=document.querySelector(".slider") as HTMLElement;
  const buttonsControl=[...document.querySelectorAll("[data-btn]")] as HTMLButtonElement[];
@@ -34,14 +35,7 @@ interface Music {
     title: string;
 }
 
-interface MusicData2{
-    title:string,
-    artist:string,
-    artwork:string,
-    url:string,
-    likes:string
-}
-
+ 
 let musics:Music[]=[];
  
 const searchInput=<HTMLInputElement>document.querySelector(".search");
@@ -111,6 +105,8 @@ function playMusic(musicEl:HTMLElement[]):void{
  
         el.addEventListener("click",e=>{
             e.preventDefault();
+             const containerPlaying=document.querySelector(".container-play-music") as HTMLElement;
+             containerPlaying.classList.remove("translate-y-full")
             const titleAduio=document.querySelector(".container-play-music [data-title]") as HTMLParagraphElement ; 
             const artistAduio=document.querySelector(".container-play-music [data-artist]") as  HTMLParagraphElement
  
@@ -162,7 +158,7 @@ buttonsControl.forEach(btn=>{
             playNext()
             console.log("next");
         }else if(btn.dataset.btn==="prev"){
-            playPrev()
+            playPrev(currentMusicIndex)
             console.log("prev");
         }
     })
@@ -220,7 +216,7 @@ function playNext() {
     }
   }
   
-  function playPrev() {
+  function playPrev(currentMusicIndex:number | undefined) {
     const cards = document.querySelectorAll("[data-music]") as NodeList;
     const lastIndex = cards.length - 1;
     
@@ -253,32 +249,7 @@ toggleMenu.addEventListener("click",function(){
     containerMenuList.style.left="0%";
     containerMenuList.style.display="flex";
 })
-function cardDetail(container:HTMLElement,template:HTMLTemplateElement,data:dataMusic[]):void{
-    data.map((d,i)=>{
-        const card = template!.content.cloneNode(true)?.children[0] as HTMLDivElement; 
-        // const urlMusic=card.querySelector("[data-music]");
-        const title=card.querySelector("[data-title]") as HTMLParagraphElement;
-        const artist=card.querySelector("[data-artist]") as HTMLParagraphElement;
-        const image=card.querySelector("[data-image]") as HTMLImageElement;
-        
-        card?.setAttribute("data-index",`${i}`);
-        card?.setAttribute("data-url",d.url);
-        title.textContent=d.title;
-        artist.textContent=d.artist;
-        loadImage(d.artwork,image);
-        container.appendChild(card);
-})}
-
-function loadImage(url:string,image:HTMLImageElement){
-    image.addEventListener("load",()=>{
-      image.src=url;
-    })
-    image.addEventListener("error",()=>{
-     image.src="./bg-mobile.png";
-     return new Error("Error to load image")
-    })
-  
- }
-
+ 
+ 
  
  

@@ -266,7 +266,10 @@ ul{
 }
  
 .hidden {
-    display: none;
+    display: none !important;
+}
+.translate-y-full{
+    transform: translateY(100%);
 }
 ul li:not(:last-child){
   margin-bottom:2.5rem;
@@ -363,6 +366,7 @@ aside{
     justify-content: space-between;
     padding:1rem 3rem;
     background:rgba(0,0,0,.6); 
+    transition:.3s transform;
 }
  
  .container-range{
@@ -370,7 +374,6 @@ aside{
     position: relative;
     display: flex;
     align-items: center;
-    background:red;
     justify-content: center;
     .range{
         width: 100%;
