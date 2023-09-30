@@ -10,8 +10,11 @@
 
     }
     body{
+        /* padding:1rem 2.5rem; */
+        background:var(--bg-page);
        color:#fff;
         font-size:1.5rem;
+        box-sizing: border-box;
     }
     *{
         padding: 0;
@@ -60,32 +63,23 @@
         border-radius:2rem;
         background:rgba(0,0,0,.04);
     }
-    input[type="range"]::-webkit-slider-thumb{
-         appearance: none;
-         -webkit-appearance:none;
-         -moz-appearance:none;
-         width:.7rem;
-         cursor: pointer;
-         border-radius:50%;
-         height:.7rem;
-         border:2px solid transparent;
-         outline-offset:3px;
-         outline:1px solid white;
-         background:var(--orange);
-    }
+  
  
       
 }
 @layer utilities{
     .bg-base-dark{
         background:var(--bg-top-card);
+    } 
+    .w-full{
+        width: 100%;
     }
      .w-4{
         width: 2rem;
         height: 2rem;
      }
      .text-xm{
-         font-size:1.2rem;
+         font-size:1rem;
      }
     .text-sm{
         font-size:1.2rem;
@@ -115,6 +109,10 @@
         border-radius:10px;
         height: 6.5rem;
     }
+     .w-6{
+        width: 3rem;
+        height: 3rem;
+     }
     .flex{
         display: flex;
      }
@@ -146,6 +144,9 @@
     .mb-1{
         margin-bottom: 0.5rem;
     }
+    .ml-l{
+        margin-left:.5rem;
+    }
     .mb-2{
         margin-bottom:1rem;
      }
@@ -167,11 +168,20 @@
     .p-3{
         padding:1.5rem;
     }
+    .p-1{
+        padding:.5rem;
+    }
     .p-2{
         padding:1rem;
     }
     .gap-4{
         gap:2rem;
+    }
+    .round-1{
+        border-radius:.5rem;
+    }
+    .round-2{
+        border-radius:1rem;
     }
     .round-4{
         border-radius:2rem;
@@ -185,12 +195,12 @@
     [data-card]{
         cursor: pointer;
     }
+    .shadow-base{
+        box-shadow:0 1px 3px rgba(0,0,0,.5);
+    }
    
 }
-body{
-    padding:1rem 2.5rem;
-    background:var(--bg-page);
-}
+ 
 :root{
     --bg-gray-sm:rgba(51,54,59,.37);
     --bg-svg-base:rgba(239,238,224,.25);
@@ -211,20 +221,30 @@ body{
         }
      } 
 
-     .music-card{
-        gap: 1rem;
-        width:15rem;
-        min-width:15rem;
-        .img{
-            width: 100%;
-            margin-bottom:.5rem;
-           aspect-ratio: 1 /1;
-           border-radius:2.5rem;
-        }
-     }
+     input[type="range"]::-webkit-slider-thumb{
+        appearance: none;
+        -webkit-appearance:none;
+        -moz-appearance:none;
+        width:.7rem;
+        cursor: pointer;
+        border-radius:50%;
+        height:.7rem;
+        border:2px solid transparent;
+        outline-offset:3px;
+        background:var(--orange);
+   }
+   input[type="range"].range::-webkit-slider-thumb{
+    outline:1px solid white;
+   }
+   input[type="range"].volum::-webkit-slider-thumb{
+    width:.85rem;
+    border:0;
+    height:.85rem;
+   }
 }
   header{
-    .header-search{
+     padding:1rem 2.5rem;
+     .header-search{
         width: 100%;
         background:var(--bg-gray-sm);
         display: flex;
@@ -241,7 +261,10 @@ body{
   }
 }
 main{
+    padding:1rem 2.5rem;
     height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 .btn-round{
     border:1px solid rgba(255,255,255,.15);
@@ -344,12 +367,23 @@ aside{
    }
 }
 
+ 
  .container-music{
-   width: 100%;
-   overflow-x: auto;
-   height: auto;
+   width:100%;
+   display: flex;
+  overflow-x: auto;
    gap:1.5rem;
-   
+   .music-card{
+    gap: 1rem;
+    width:15rem;
+    min-width:15rem;
+    .img{
+        width: 100%;
+        margin-bottom:.5rem;
+       aspect-ratio: 1 /1;
+       border-radius:2.5rem;
+    }
+ }
  }
 
 
@@ -368,7 +402,17 @@ aside{
     background:rgba(0,0,0,.6); 
     transition:.3s transform;
 }
- 
+ [data-chart]{
+    width:100%;
+    height: 500px;
+    overflow:hidden;
+    .highcharts-root {
+         display: block;
+          width: 100%;
+          height: auto;
+         }
+ }
+
  .container-range{
     /* width: 100%; */
     position: relative;
@@ -378,7 +422,7 @@ aside{
     .range{
         width: 100%;
     }
-    .slider{
+    .slider,.slider-volum{
         position: absolute;
         width: 0%;
         height: 100%;
@@ -418,6 +462,51 @@ aside{
 .toggle-menu{
     display: none;
 }
+.container-card-details .card-detail div{
+    flex-grow:1;
+}
+.card-detail{
+    position: relative;
+    .show-card-detail{
+        opacity:0;
+       position: absolute;
+       bottom:100%;
+       right:0;
+        z-index: 10;
+        transform: translateY(-3rem);
+        flex-direction: column;
+       }
+}
+ 
+.show-card-detail button{
+    overflow: hidden;
+    width:3.5rem;
+    height: 3.5rem;
+
+    padding:.5rem;
+    border-radius:4rem;
+   background:rgba(0,0,0,.9);
+   transition:.5s width;
+}
+ .btn-share:hover + .show-card-detail{
+  /* opacity:1; */
+  animation:translate .4s ease-in-out forwards;
+ }
+ 
+ [data-music]{
+    cursor: pointer;
+ }
+ @keyframes translate {
+    0%{
+     opacity:0;
+      transform: translateY(-3rem);
+      
+    }
+    100%{
+        opacity:1;
+        transform: translateY(0rem);
+      }
+ }
 @media (max-width:1200px) {
     :root{
         --padding-img:3rem;
@@ -433,6 +522,10 @@ aside{
 
 
 @media (max-width:900px) {
+    .w-2-md{
+        width:2rem;
+        aspect-ratio:1 / 1;
+    }
     .container-top{
         width: 100%;
         grid-column:1/-1;
@@ -475,13 +568,32 @@ aside{
     
 }
 @media (max-width :740px) {
+   
+    .show-card-detail  button:hover{
+         
+         width:max-content;
+         
+    }
+    
     html{
         font-size:65%;
+    }
+    .text-md{
+        font-size:1.2rem;
+        font-weight:300;
     }
     .container-top__img{
         height:45rem;
     }
-
+     .flex-col-md{
+        flex-direction:column;
+     }
+     .flex-col-reverse{
+        flex-direction: column-reverse;
+     }
+     .hidden-md{
+        display: none;
+     }
     .container-list{
         position:fixed;
         width: 100%;
@@ -504,13 +616,15 @@ aside{
         font-weight:500;
     }
 }
-
+ 
 @media (min-width : 1500px) {
     :root{
         --grid-reapeat:30;
     }
+   
     html{
         font-size:80%;
     }
 }
+
  

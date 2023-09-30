@@ -1,42 +1,31 @@
 
 
 "use strict";
-import { cardDetail } from "./createCard";
- const cardTopTemplate=<HTMLTemplateElement>document.querySelector("[data-card-top-template]");
- const musicCardTemplate=<HTMLTemplateElement>document.querySelector("[data-card-music]");
- const containerTopChart=document.querySelector(".container-top-chart") as HTMLElement;
- const containerMusicPlayer=document.querySelector(".container-music") as HTMLElement;
+ 
+import { renderSearchData } from "./renderSeachData";
+import { updatTime } from "./updateTime";
+import {createChart} from "./chart";
+import {renderTopCard,renderMusicPage,renderMusicCardDetails} from "./renderCard"
  const dataPlay=document.querySelector("[data-play]") as HTMLElement;
  const btnPlay=document.querySelector("[data-btn-play]") as HTMLElement;
  export const audio=document.querySelector("audio") as HTMLAudioElement;
  const range=document.querySelector(".range") as HTMLInputElement;
- const slider=document.querySelector(".slider") as HTMLElement;
+ export const slider=document.querySelector(".slider") as HTMLElement;
  const buttonsControl=[...document.querySelectorAll("[data-btn]")] as HTMLButtonElement[];
- const toggleMenu=document.querySelector(".toggle-menu") as HTMLButtonElement;
+ const audioDuration=document.querySelector("[ data-aduio-duraion]") as HTMLSpanElement;
 
-type MusicData=[
-    {
-     title:string,
-     artist:string,
-     artwork:string,
-     url:string,
-     likes:string
-    }
-]
- type dataMusic={
-    title:string,
-    artist:string,
-    artwork:string,
-    url:string,
-    likes:string
-}
-interface Music {
+
+
+ const toggleMenu=document.querySelector(".toggle-menu") as HTMLButtonElement;
+ createChart()
+
+ 
+export interface Music {
     artist: string;
     title: string;
 }
 
- 
-let musics:Music[]=[];
+ export let musics:Music[]=[];
  
 const searchInput=<HTMLInputElement>document.querySelector(".search");
 // const ListSearch=
@@ -53,49 +42,14 @@ async function fetchData(url:string){
     const data=await response.json();
     renderTopCard(data);
     renderMusicPage(data)
-
+    renderMusicCardDetails(data)
     const cards =[...document.querySelectorAll("[data-music]")] as HTMLElement[];
     playMusic(cards)
-    
-   
 }
  
-function renderSearchData(musics:Music[],value:string){
-
-    musics.map(music=>{
-        const isVisible=music.title.includes(value) ||music.artist.includes(value);
-        console.log(isVisible);
-        console.log(isVisible);
-    })
-}
- 
- 
-function renderTopCard(data:MusicData| null){
-    if(data!==null){
-       
-        musics=data.map(d=>{
-            return {title:d.title.toLocaleLowerCase(),artist:d.artist.toLocaleLowerCase()};
-        })
-        let topDataCard:MusicData =data.sort((a,b)=>Number(b.likes)- Number(a.likes));
-        let sliceTop=topDataCard.slice(0,3);
-        cardDetail(containerTopChart,cardTopTemplate,sliceTop)
-    }}
-
-// function render
 
  fetchData("./data/music.json");
  
-
-
-function renderMusicPage(data:dataMusic[]| null):void{
-    if(data!==null){
-       cardDetail(containerMusicPlayer,musicCardTemplate,data);
-    }
-}
-
- 
-
-
 
  
 let currentMusicIndex: number | undefined;
@@ -125,7 +79,11 @@ function playMusic(musicEl:HTMLElement[]):void{
             audio.play()
             dataPlay.setAttribute("href","./icon/icon.svg#pause")
             btnPlay.setAttribute("data-playing",`${true}`);
- 
+            audio.addEventListener("loadeddata",function(){
+              console.log();
+              audioDuration.textContent=`${Math.floor(audio.duration/60).toString().padStart(2, '0')}:${Math.floor(audio.duration % 60).toString().padStart(2, '0')}`
+            })
+
             currentMusicIndex=i;
  
         })
@@ -142,8 +100,6 @@ btnPlay.addEventListener("click",function(){
     btnPlay.setAttribute("data-playing",`${true}`);
     dataPlay.setAttribute("href","./icon/icon.svg#pause")
  }
-
-console.log(dataPlay.dataset.playing);
 })
 
  
@@ -158,7 +114,7 @@ buttonsControl.forEach(btn=>{
             playNext()
             console.log("next");
         }else if(btn.dataset.btn==="prev"){
-            playPrev(currentMusicIndex)
+            playPrev()
             console.log("prev");
         }
     })
@@ -171,18 +127,16 @@ audio.addEventListener("ended",function(){
     dataPlay.setAttribute("href","./icon/icon.svg#play")
 })
 
-audio.addEventListener("timeupdate",function(e:Event){
-    range.value="";
-    const currentTime=this.currentTime / this.duration;
-    if(!isNaN(currentTime))
-    range.value=`${currentTime*100}`;
-    slider.style.width=`${currentTime*100}%`;
- })
+audio.addEventListener("timeupdate",function(){
+  updatTime.call(this,range,slider)
+})
 range.addEventListener("input",()=>setCurrentTime())
 range.addEventListener("change",()=>setCurrentTime())
 function setCurrentTime(){
     
-    if(audio.src!==undefined) {audio.currentTime=audio.duration * (+range.value / 100);}
+    if(audio.src!==undefined) {
+      audio.currentTime=audio.duration * (+range.value / 100);
+      }
     slider.style.width=`${range.value}%`;
 }
 
@@ -216,7 +170,7 @@ function playNext() {
     }
   }
   
-  function playPrev(currentMusicIndex:number | undefined) {
+  function playPrev() {
     const cards = document.querySelectorAll("[data-music]") as NodeList;
     const lastIndex = cards.length - 1;
     
@@ -252,4 +206,9 @@ toggleMenu.addEventListener("click",function(){
  
  
  
- 
+const audioVolum=document.querySelector(".volum") as HTMLInputElement;
+const sliderVolum=document.querySelector(".slider-volum") as HTMLDivElement
+audioVolum.addEventListener("input",function(){
+  sliderVolum.style.width=this.value + "%";
+  audio.volume=Number(this.value) / 100
+})

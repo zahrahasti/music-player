@@ -9,7 +9,7 @@
      <script defer src="./src/main.ts" type="module"></script>
 </head>
 <body>
-    <header class="header flex justify-between gap-x-4 mb-8 item-center">
+    <header class="header flex  gap-x-4 mb-8 item-center">
          <img src="./logo.png" alt="" class="header-img">
           <div class="header-search round-8">
               <label for="search">
@@ -88,7 +88,7 @@
                 </li>
              </ul>
         </section>
-           <section class="container-home  " data-target="1">
+           <section class="container-home hidden " data-target="1">
             <section class="flex justify-between gap-x-4 b-8">
             
                  <section class="child-1 container-top flex justify-between gap-x-4">
@@ -128,14 +128,32 @@
                     </aside>
                 </section>
             </section>
-             <section class="child-2 container-card-music">
-                        <p class="text-xl mt-6 mb-4">New releases.</p>
-                        <div  class="container-music flex"></div>
+           </section>
+           <section class="w-full mt-4">
+            <section id="chart" data-chart></section>
+               <section class="container-card-details">
+               </section>
+           </section>
+           <section class="container-radio hidden">
+               empty
+           </section>
+           <section class="container-collection hidden">
+               <button type="button">My collection</button>
+               <button type="button">Likes</button>
+                <div class="collection">
+                    collection or likes cards ....
+                </div>
+           </section>
+           <section class="container-user">
+              <form>
                 
-            </section>
+              </form>
            </section>
     </main>
-  
+    <section class="container-card-music hidden">
+        <p class="text-xl mt-6 mb-4">New releases.</p>
+        <div  class="container-music flex"></div>
+    </section>
      <article class="container-play-music translate-y-full  text-white justify-between flex item-center">
            
          <div class="flex item-center gap-x-2">
@@ -162,7 +180,7 @@
                         <use  data-play></use>
                     </svg>
                 </button>
-                <button type="button" data-btn="next">
+                <buttrangeon type="button" data-btn="next">
                     <svg>
                         <use href="./icon/icon.svg#next"></use>
                     </svg>
@@ -173,31 +191,92 @@
                     </svg>
                 </button>
             </div>
-            <div class="container-range">
-                <input type="range"
-                        value="0"
-                        min="0"
-                        max="100"
-                        class="range">
-                        <div class="slider"></div>
+            <div class="flex item-center gap-x-4">
+                <span data-aduio-timer>2:12</span>
+                  <div class="container-range">
+                     <input type="range"
+                      value="0"
+                      min="0"
+                      max="100"
+                      class="range">
+                     <div class="slider"></div>
+                 </div>
+                <span data-aduio-duraion>2:12</span>
             </div>
+            
          </div>
-         <div class="flex item-center">
+         <div class="flex item-center gap-x-2">
             <svg>
                 <use href="./icon/icon.svg#volum"></use>
              </svg>
-             <input type="range" name="volum" id="volum">
+             <div class="container-range">
+                <input type="range"
+                 value="0"
+                 min="0"
+                 max="100"
+                 class="volum">
+                <div class="slider-volum"></div>
+            </div>
          </div>
          <div class="container-audio-hidden">
             <audio src=""></audio>
          </div>
      </article>
+   
+     <template data-card-detail>
+        <div class="card-detail shadow-base mb-2 bg-base-dark round-2 w-full flex item-center justify-between gap-4 p-1"  data-music>
+                    <div class="flex gap-x-4">
+                       <img src="" alt="image songer" data-image class="w-6 ml-l round-1">
+                       <button type="button" class="hidden-md">
+                          <svg>
+                              <use href="./icon/icon.svg#like"></use>
+                          </svg>
+                       </button>
+                    </div>
+                    <div class="flex item-center justify-between flex-col-md">
+                        <p class="text-md" data-title>Let me love you ~ Krisx</p>
+                        <p class="text-sm" data-artist>Single</p>
+                    </div>
+                    <div class="flex item-center  justify-between flex-col-md flex-col-reverse">
+                        <p class="text-sm text-white" data-duration>5:12</p>
+                        <button type="button" class="btn-share">
+                             <svg class="w-2-md">
+                                 <use href="./icon/icon.svg#more-vertical"></use>
+                             </svg>
+                        </button>
+                        <div class="show-card-detail flex">
+                            <button type="button" class="mb-1 p-1">
+                                <svg>
+                                    <use href="./icon/icon.svg#telegram"></use>
+                                </svg>      
+                            </button>
+                            <button type="button" class="mb-1 p-1">
+                                <svg>
+                                    <use href="./icon/icon.svg#twitter"></use>
+                                </svg>
+                               
+                            </button>
+                            <button type="button"  class="mb-1 p-1" >
+                                <svg>
+                                    <use href="./icon/icon.svg#facebook"></use>
+                                </svg>
+                               
+                            </button>
+                            <button type="button" class="mb-1 p-1"> 
+                                <svg>
+                                    <use href="./icon/icon.svg#download" data-download></use>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                 </div>
+     </template>
     <template data-card-top-template>
         <div class="flex justify-between card-top-chart p-3 bg-base-dark round-4" data-music>
             <div class="card-top-content">
                 <img src="" alt="song image" class="w-12" data-image loading="lazy"> 
                  <div class="flex flex-col justify-between">
-                     <p class="text-lg" data-title></p>
+                      <p class="text-lg" data-title></p>
                       <p class="text-sm" data-artist></p>
                       <p class="text-sm-light">
                          <span>12</span>:<span>12</span>:<span>00</span>
