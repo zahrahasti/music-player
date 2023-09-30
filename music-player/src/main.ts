@@ -5,7 +5,7 @@
 import { renderSearchData } from "./renderSeachData";
 import { updatTime } from "./updateTime";
 import {createChart} from "./chart";
-import {renderTopCard,renderMusicPage,renderMusicCardDetails} from "./renderCard"
+ import {renderTopCard,renderMusicPage,renderMusicCardDetails,renderRadioCard} from "./renderCard"
  const dataPlay=document.querySelector("[data-play]") as HTMLElement;
  const btnPlay=document.querySelector("[data-btn-play]") as HTMLElement;
  export const audio=document.querySelector("audio") as HTMLAudioElement;
@@ -14,7 +14,7 @@ import {renderTopCard,renderMusicPage,renderMusicCardDetails} from "./renderCard
  const buttonsControl=[...document.querySelectorAll("[data-btn]")] as HTMLButtonElement[];
  const audioDuration=document.querySelector("[ data-aduio-duraion]") as HTMLSpanElement;
 
-
+  
 
  const toggleMenu=document.querySelector(".toggle-menu") as HTMLButtonElement;
  createChart()
@@ -43,6 +43,7 @@ async function fetchData(url:string){
     renderTopCard(data);
     renderMusicPage(data)
     renderMusicCardDetails(data)
+    renderRadioCard(data)
     const cards =[...document.querySelectorAll("[data-music]")] as HTMLElement[];
     playMusic(cards)
 }
